@@ -39,6 +39,20 @@ namespace KiwiBankomatenTests
 
         }
         [TestMethod]
+        public void Create_Duplicate_Name_Customer()
+        {
+            //Arrange
+            Admin admin = DataBase.AdminList[1];
+
+            //Act
+            admin.CreateNewUser(1, "Tobias", "NotionLover66");
+            Customer newestCustomer = DataBase.CustomerDict[DataBase.CustomerDict.Keys.Last()];
+
+            //Assert
+            Assert.IsFalse(newestCustomer.UserName == "Tobias" && newestCustomer.Password == "NotionLover66");
+
+        }
+        [TestMethod]
         public void Lock_Customer_Account()
         {
             //Arrange
